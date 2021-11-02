@@ -7,13 +7,13 @@ namespace InstagramAspMVC.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class aq : IMigrationMetadata
+    public sealed partial class create : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(aq));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(create));
         
         string IMigrationMetadata.Id
         {
-            get { return "202111020901552_aq"; }
+            get { return "202111021332310_create"; }
         }
         
         string IMigrationMetadata.Source

@@ -127,25 +127,21 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ModulesController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Daos\UserDao.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202111020901552_aq.cs" />
-    <Compile Include="Migrations\202111020901552_aq.designer.cs">
-      <DependentUpon>202111020901552_aq.cs</DependentUpon>
+    <Compile Include="Migrations\202111021332310_create.cs" />
+    <Compile Include="Migrations\202111021332310_create.designer.cs">
+      <DependentUpon>202111021332310_create.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202111020906217_new.cs" />
-    <Compile Include="Migrations\202111020906217_new.designer.cs">
-      <DependentUpon>202111020906217_new.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202111020908313_new1.cs" />
-    <Compile Include="Migrations\202111020908313_new1.designer.cs">
-      <DependentUpon>202111020908313_new1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202111020917136_new2.cs" />
-    <Compile Include="Migrations\202111020917136_new2.designer.cs">
-      <DependentUpon>202111020917136_new2.cs</DependentUpon>
+    <Compile Include="Migrations\202111021551545_update_filed_image.cs" />
+    <Compile Include="Migrations\202111021551545_update_filed_image.designer.cs">
+      <DependentUpon>202111021551545_update_filed_image.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -159,6 +155,38 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Assests\assets\default-user.png" />
+    <Content Include="Content\Assests\assets\favicon.svg" />
+    <Content Include="Content\Assests\assets\icons\add.svg" />
+    <Content Include="Content\Assests\assets\icons\bookmark.svg" />
+    <Content Include="Content\Assests\assets\icons\comment.svg" />
+    <Content Include="Content\Assests\assets\icons\heart.svg" />
+    <Content Include="Content\Assests\assets\icons\home.svg" />
+    <Content Include="Content\Assests\assets\icons\messenger.svg" />
+    <Content Include="Content\Assests\assets\icons\more.svg" />
+    <Content Include="Content\Assests\assets\icons\reels.svg" />
+    <Content Include="Content\Assests\assets\icons\search.svg" />
+    <Content Include="Content\Assests\assets\icons\share.svg" />
+    <Content Include="Content\Assests\assets\icons\shop.svg" />
+    <Content Include="Content\Assests\assets\insta-clone.png" />
+    <Content Include="Content\Assests\assets\logo.svg" />
+    <Content Include="Content\Assests\css\app.css" />
+    <Content Include="Content\Assests\css\style.css" />
+    <Content Include="Content\Assests\css\style1.css" />
+    <Content Include="Content\Assests\images\app-store.png" />
+    <Content Include="Content\Assests\images\facebook-icon.png" />
+    <Content Include="Content\Assests\images\favicon.png" />
+    <Content Include="Content\Assests\images\gg-play.png" />
+    <Content Include="Content\Assests\images\logo-dark.png" />
+    <Content Include="Content\Assests\images\logo-light.png" />
+    <Content Include="Content\Assests\images\phone-frame.png" />
+    <Content Include="Content\Assests\images\slide %281%29.jpg" />
+    <Content Include="Content\Assests\images\slide %282%29.jpg" />
+    <Content Include="Content\Assests\images\slide %283%29.jpg" />
+    <Content Include="Content\Assests\images\slide %284%29.jpg" />
+    <Content Include="Content\Assests\images\slide %285%29.jpg" />
+    <Content Include="Content\Assests\js\app.js" />
+    <Content Include="Content\Assests\js\script.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -190,10 +218,14 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Shared\MyLayout.cshtml" />
+    <Content Include="Views\Modules\Header.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\User\Profile.cshtml" />
+    <Content Include="Views\Authentication\Login.cshtml" />
+    <Content Include="Views\Authentication\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -212,17 +244,11 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202111020901552_aq.resx">
-      <DependentUpon>202111020901552_aq.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202111021332310_create.resx">
+      <DependentUpon>202111021332310_create.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202111020906217_new.resx">
-      <DependentUpon>202111020906217_new.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202111020908313_new1.resx">
-      <DependentUpon>202111020908313_new1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202111020917136_new2.resx">
-      <DependentUpon>202111020917136_new2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202111021551545_update_filed_image.resx">
+      <DependentUpon>202111021551545_update_filed_image.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

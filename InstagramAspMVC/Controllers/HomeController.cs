@@ -10,7 +10,15 @@ namespace InstagramAspMVC.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var user = Session["User"];
+            if(user == null)
+            {
+                return RedirectToAction("Login","Authentication");
+            }
+            else
+            {
+                return View();
+            }       
         }
 
         public ActionResult About()

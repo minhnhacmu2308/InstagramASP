@@ -38,6 +38,8 @@ namespace InstagramAspMVC.Models
         [Required]
         public string address { get; set; }
 
+        public string image { get; set; }
+
         public int gender { get; set; }
 
         public int status { get; set; }
