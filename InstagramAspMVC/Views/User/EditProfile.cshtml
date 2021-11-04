@@ -1,0 +1,236 @@
+﻿@model  InstagramAspMVC.Models.User
+@{
+    ViewBag.Title = "EditProfile";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+   
+}
+<main>
+    <div class="container">
+        <div class="row" style="border: 1px solid #DDDDDD; height: 700px; margin: 50px auto; width: 900px ">
+            <div class="col-4" style="border-right: 1px solid #DDDDDD ;padding-top:20px">
+                <p id="0" onclick="onSwitch1()" style="height:40px;border-left:4px solid black;font-size:14px;line-height:40px;padding-left:10px">Changes information</p>
+                <p id="1" onclick="onSwitch()" style="height:40px;border-left:4px solid #ffff;font-size:14px;line-height:40px;padding-left:10px">Changes password</p>
+            </div>
+            <div class="col-8" style="padding:20px 80px">
+                <div class="row" style="margin-bottom:10px">
+                    <div class="col-4">
+                        @if (Model.image == null)
+                        {
+                            <img id="imageCurrent" src="~/Content/Assests/assets/default-user.png" alt="User Picture" width="100" height="100" style="border-radius:50px" />
+                        }
+                        else
+                        {
+                            <img id="imageCurrent" src="~/Content/Assests/images/@Model.image" alt="User Picture" width="100" height="100" style="border-radius:50px" />
+                        }
+
+                    </div>
+                    <div class="col-8" style="margin-top:30px">
+                        <h5>@Model.fullname</h5>
+                        <input type="file" accept="image/*" name="file" id="fileUpload" />
+                        <input type="hidden" id="email" value="@Model.email" />
+                    </div>
+                </div>
+                <script>
+
+                    function onSwitch() {
+                        document.getElementById("formChangePassword").style.display = "block";
+                        document.getElementById("formProfile").style.display = "none";
+                        document.getElementById("1").style.borderLeft = "4px solid black";
+                        document.getElementById("0").style.borderLeft = "4px solid #ffff";
+                    }
+                    function onSwitch1() {
+                        document.getElementById("formChangePassword").style.display = "none";
+                        document.getElementById("formProfile").style.display = "block";
+                        document.getElementById("1").style.borderLeft = "4px solid #ffff";
+                        document.getElementById("0").style.borderLeft = "4px solid black";
+                        $('#mes1').html("");
+                    }
+
+                    function onChangePassword() {
+                        var passwordNew = $('#passwordNew').val();
+                        var rePasswordNew = $('#rePasswordNew').val();
+                        var email = $('#email').val();
+                        var formData = new FormData();
+                        formData.append('password', passwordNew);
+                        formData.append('email', email);
+                        if (passwordNew != "" || rePasswordNew != "") {
+                            if (passwordNew !== rePasswordNew) {
+                                $('#mes').html("❌ Password new and RePassword no match");
+                            } else {
+                                $.ajax(
+                                    {
+                                        type: 'POST',
+                                        url: '/User/ChangePassword/',
+                                        contentType: false,
+                                        processData: false,
+                                        data: formData,
+                                        success: function (data) {
+                                            console.log(data);
+                                            $('#mes1').html("✅ Change password successfully!!");
+                                        },
+                                        error: function (err) {
+                                            alert(err);
+                                        }
+                                    }
+                                )
+                            }
+                        } else {
+                            $('#mes').html("❌ Fill out information");
+                        }
+                       
+                    }
+
+                    $(function () {
+                        $('#fileUpload').change(function () {
+                            if (window.FormData !== undefined) {
+                                var fileUpload = $('#fileUpload').get(0);
+                                var files = fileUpload.files;
+                                var formData = new FormData();
+                                var email = $('#email').val();
+                                formData.append('file', files[0]);
+                                formData.append('email', email);
+                                $.ajax(
+                                    {
+                                        type: 'POST',
+                                        url: '/User/ChangeImage/',
+                                        contentType: false,
+                                        processData: false,
+                                        data: formData,
+                                        success: function (urlImage) {
+                                            console.log(urlImage)
+                                            $('#imageCurrent').attr('src', urlImage.data)
+                                        },
+                                        error: function (err) {
+                                            alert(err);
+                                        }
+                                    }
+                                )
+                            }
+                        })
+                    })
+                </script>
+                <form id="formChangePassword" action="/User/EditProfile" style="display:none" method="post">
+
+                    <div class="row" style="margin-top:30px">
+                        <div class="col-4">
+                            <p style="font-weight:bold;font-size:13px">Password new</p>
+                        </div>
+                        <div class="col-8">
+                            <div class="mb-3">
+                                <input type="password" class="form-control" value="" id="passwordNew" placeholder="Password new">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top:30px">
+                        <div class="col-4">
+                            <p style="font-weight:bold;font-size:13px">Re password new</p>
+                        </div>
+                        <div class="col-8">
+                            <div class="mb-3">
+                                <input type="password" class="form-control" value="" id="rePasswordNew" placeholder="Re password new">
+                            </div>
+                        </div>
+                    </div>
+                    <p style="color:red" id="mes"></p>
+                    <p style="color:green" id="mes1"></p>
+                    <div class="row" style="margin-top:30px">
+                        <div class="col-12" style="display: flex; align-items: center; justify-content: center;">
+                            <button style="width:100px" type="button" onclick="onChangePassword()" class="btn btn-secondary">Save</button>
+                        </div>
+                    </div>
+                </form>
+                <form id="formProfile" action="/User/EditProfile" method="post">
+                    <div class="row" style="margin-top:30px">
+                        <div class="col-4">
+                            <input type="hidden" class="form-control" name="id_user" value="@Model.id_user" id="exampleFormControlInput1" placeholder="email">
+                            <input type="hidden" class="form-control" name="password" value="@Model.password" id="exampleFormControlInput1" placeholder="email">
+                            <p style="font-weight:bold;font-size:13px">Email</p>
+                        </div>
+                        <div class="col-8">
+                            <div class="mb-3">
+                                <input type="email" class="form-control" name="email" value="@Model.email" readonly id="exampleFormControlInput1" placeholder="email">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:30px">
+                        <div class="col-4">
+                            <p style="font-weight:bold;font-size:13px">Full name</p>
+                        </div>
+                        <div class="col-8">
+                            <div class="mb-3">
+                                <input type="text" class="form-control" value="@Model.fullname" name="fullname" id="exampleFormControlInput1" placeholder="fullname">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:30px">
+                        <div class="col-4">
+                            <p style="font-weight:bold;font-size:13px">Username</p>
+                        </div>
+                        <div class="col-8">
+                            <div class="mb-3">
+                                <input type="text" class="form-control" readonly value="@Model.username" name="username" id="exampleFormControlInput1" placeholder="user name">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:30px">
+                        <div class="col-4">
+                            <p style="font-weight:bold;font-size:13px">Phone number</p>
+                        </div>
+                        <div class="col-8">
+                            <div class="mb-3">
+                                <input type="text" class="form-control" value="@Model.phonenumber" name="phonenumber" id="exampleFormControlInput1" placeholder="phoen number">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:30px">
+                        <div class="col-4">
+                            <p style="font-weight:bold;font-size:13px">Address</p>
+                        </div>
+                        <div class="col-8">
+                            <div class="mb-3">
+                                <input type="text" class="form-control" value="@Model.address" name="address" id="exampleFormControlInput1" placeholder="address">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:30px">
+                        <div class="col-4">
+                            <p style="font-weight:bold;font-size:13px">Gender</p>
+                        </div>
+                        <div class="col-8">
+                            <div class="mb-3">
+                                <select class="form-select" name="gender" aria-label="Default select example">
+                                    @if (Model.gender == 1)
+                                    {
+                                        <option value="@Model.gender" selected>Male</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@Model.gender" selected>Female</option>
+                                    }
+
+                                    @if (Model.gender == 1)
+                                    {
+                                        <option value="0">Female</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="1">Male</option>
+                                    }
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:30px">
+                        <div class="col-12" style="display: flex; align-items: center; justify-content: center;">
+                            <button style="width:100px" type="submit" class="btn btn-secondary">Save</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</main>
+
