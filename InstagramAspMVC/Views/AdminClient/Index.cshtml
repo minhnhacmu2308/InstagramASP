@@ -1,0 +1,91 @@
+﻿@model List<InstagramAspMVC.Models.User>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Quản lí người dùng</h1>
+        <ol class="breadcrumb mb-4">
+        </ol>
+
+        <div class="card mb-4">
+            <div class="card-header">
+                @if (ViewBag.Msg != null)
+                {
+                    <div class="alert alert-info">
+                        <strong>@ViewBag.Msg</strong>
+                    </div>
+                }
+
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Email</th>
+                            <th>Status</th>
+                            <th>Action</th>
+
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>STT</th>
+                            <th>Email</th>
+                            <th>Status</th>
+                            <th>Action</th>
+
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @{ 
+                            var id = 0;
+                        }
+                        @foreach (var item in Model)
+                        {
+                            id += 1;
+                        <tr>
+                            <td>@id</td>
+                            <td>@item.email</td>
+                            @if (item.status == 1)
+                            {
+                                <td>
+                                    Đang hoạt động
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                   Đã bị chặn
+                                </td>
+                            }
+                            @if (item.status == 1)
+                            {
+                                <td>
+                                    <a href="/AdminClient/ChangeStatus?id=@item.id_user" style="width:200px; color:white" class="btn btn-danger" d>
+                                        Chặn người dùng
+                                    </a>
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    <a href="/AdminClient/ChangeStatus?id=@item.id_user" style="width: 200px; color: white" class="btn btn-success" d>
+                                        Mở chặn người dùng
+                                    </a>
+                                </td>
+                            }
+
+                        </tr>
+                        }
+
+                        
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
