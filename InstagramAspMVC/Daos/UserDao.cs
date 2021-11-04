@@ -45,5 +45,38 @@ namespace InstagramAspMVC.Daos
         {
             return myDb.Users.Where(u => u.email == email).FirstOrDefault();
         }
+
+        public void update(User user)
+        {
+            var obj = myDb.Users.Where(u => u.email == user.email).FirstOrDefault();
+            obj.email = user.email;
+            obj.password = user.password;
+            obj.username = user.username;
+            obj.address = user.address;
+            obj.gender = user.gender;
+            obj.fullname = user.fullname;
+            obj.phonenumber = user.phonenumber;
+            obj.status = user.status;
+            myDb.SaveChanges();
+        }
+
+        public User checkPhonenumberExist(string phonenumber)
+        {
+            return myDb.Users.Where(u => u.phonenumber == phonenumber).FirstOrDefault();
+        }
+
+        public void changeImage(string email, string image)
+        {
+            var obj = myDb.Users.Where(u => u.email == email).FirstOrDefault();
+            obj.image = image;
+            myDb.SaveChanges();
+        }
+
+       public void changePassword(string email, string passwordNew)
+       {
+            var obj = myDb.Users.Where(u => u.email == email).FirstOrDefault();
+            obj.password = passwordNew;
+            myDb.SaveChanges();
+        }
     }
 }

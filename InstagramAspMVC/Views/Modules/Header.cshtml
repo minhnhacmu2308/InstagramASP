@@ -170,7 +170,14 @@
             <a href="/User/Profile" class="profile-button">
                 <div class="profile-button__border"></div>
                 <div class="profile-button__picture">
-                    <img src="~/Content/Assests/assets/default-user.png" alt="User Picture" />
+                    @if (userInfomatiom.image == null)
+                    {
+                        <img src="~/Content/Assests/assets/default-user.png" alt="User Picture" />
+                    }
+                    else
+                    {
+                        <img src="~/Content/Assests/images/@userInfomatiom.image" alt="User Picture" />
+                    }
                 </div>
             </a>
             <p style="margin-top:10px">@userInfomatiom.fullname</p>
