@@ -1,0 +1,154 @@
+﻿@model List<InstagramAspMVC.Models.Post>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h2>Xin chào</h2>
+<!--<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Quản lí bài viết</h1>
+        <ol class="breadcrumb mb-4">
+        
+        </ol>
+
+        <div class="card mb-4">
+            <div class="card-header">
+                @if (ViewBag.Msg != null)
+                {
+                    <div class="alert alert-info">
+                        <strong>@ViewBag.Msg</strong>
+                    </div>
+                }
+                    
+                </div>
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Tiêu đề</th>
+                            <th>Loại bài viết</th>
+                            <th>Nội dung</th>
+                            <th>Thời gian</th>
+                            <th>Người đăng</th>
+                            <th>Số bình luận</th>
+                            <th>Trạng thái</th>
+                            <th>Hành động</th>
+
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>STT</th>
+                            <th>Tiêu đề</th>
+                            <th>Loại bài viết</th>
+                            <th>Nội dung</th>
+                            <th>Thời gian</th>
+                            <th>Người đăng</th>
+                            <th>Số bình luận</th>
+                            <th>Trạng thái</th>
+                            <th>Hành động</th>
+
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @{
+                            var id = 0;
+                        }
+                        @foreach (var item in Model)
+                        {
+                            id += 1;
+                        <tr>
+                            <td>@id</td>
+                            <td>@item.title</td>
+                            <td>@item.Category.name</td>
+                            <td>
+                                @{
+                                    var idModelDes = "exampleModalDes" + item.id;
+                                }
+                                <a href="" data-bs-toggle="modal" data-bs-target="#@idModelDes">Xem</a>
+                            </td>
+                            <td>@item.createdAt</td>
+                            <td>@item.User.email</td>
+                            <td>@item.Comments.Count</td>
+                            @if (item.status == 0)
+                            {
+                                <td>
+
+                                    Chưa duyệt
+
+                                </td>
+                            }
+                            else if (item.status == 1)
+                            {
+                                <td>
+
+                                    Đã duyệt
+
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+
+                                    Đã chặn
+
+                                </td>
+                            }
+                            @if (item.status == 0)
+                            {
+                                <td>
+                                    <a href="/AdminPost/DeletePost?id=@item.id" style="width:100px;color:white" class="btn btn-success" d>
+                                        Duyệt bài
+                                    </a>
+                                </td>
+                            }
+                            else if (item.status == 1)
+                            {
+                                <td>
+                                    <a href="/AdminPost/ChangeStatus?id=@item.id" style="width:100px;color:white" class="btn btn-danger">
+                                        Chặn bài
+                                    </a>
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    <a href="/AdminPost/ChangeStatus?id=@item.id" style="width:100px;color:white" class="btn btn-warning">
+                                        Bỏ chặn
+                                    </a>
+                                </td>
+                            }
+
+                        </tr>-->
+                            <!-- Modal Descrip-->
+                            <!--<div class="modal fade" id="@idModelDes" tabindex="-1"
+                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">@item.title</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                           @Html.Raw(item.description)
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>-->
+                            <!-- Modal Descrup-->
+                        <!--}-->
+
+
+                        <!-- Modal Add-->
+
+
+                    <!--</tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>-->
+
