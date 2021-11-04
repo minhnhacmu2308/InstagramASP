@@ -164,7 +164,6 @@ D:\dđ\InstagramASP\InstagramAspMVC\bin\System.Web.WebPages.Razor.xml
 D:\dđ\InstagramASP\InstagramAspMVC\bin\Newtonsoft.Json.xml
 D:\dđ\InstagramASP\InstagramAspMVC\bin\Antlr3.Runtime.pdb
 D:\dđ\InstagramASP\InstagramAspMVC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\dđ\InstagramASP\InstagramAspMVC\obj\Debug\InstagramAspMVC.csproj.AssemblyReference.cache
 D:\dđ\InstagramASP\InstagramAspMVC\obj\Debug\InstagramAspMVC.csproj.CoreCompileInputs.cache
 D:\dđ\InstagramASP\InstagramAspMVC\obj\Debug\InstagramAspMVC.csproj.CopyComplete
 D:\dđ\InstagramASP\InstagramAspMVC\obj\Debug\InstagramAspMVC.dll
@@ -172,3 +171,4 @@ D:\dđ\InstagramASP\InstagramAspMVC\obj\Debug\InstagramAspMVC.pdb
 D:\dđ\InstagramASP\InstagramAspMVC\obj\Debug\InstagramAspMVC.Migrations.create.resources
 D:\dđ\InstagramASP\InstagramAspMVC\obj\Debug\InstagramAspMVC.csproj.GenerateResource.cache
 D:\dđ\InstagramASP\InstagramAspMVC\obj\Debug\InstagramAspMVC.Migrations.update_filed_image.resources
+D:\dđ\InstagramASP\InstagramAspMVC\obj\Debug\InstagramAspMVC.csproj.AssemblyReference.cache

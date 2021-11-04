@@ -127,10 +127,19 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminClientController.cs" />
+    <Compile Include="Controllers\AdminHomeController.cs" />
+    <Compile Include="Controllers\AdminLoginController.cs" />
+    <Compile Include="Controllers\AdminModulesController.cs" />
+    <Compile Include="Controllers\AdminPostController.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ModulesController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Daos\AdminPostDao.cs" />
+    <Compile Include="Daos\AdminUserDao.cs" />
+    <Compile Include="Daos\FollowDao.cs" />
+    <Compile Include="Daos\PostDao.cs" />
     <Compile Include="Daos\UserDao.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -155,8 +164,20 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Admin\assets\demo\chart-area-demo.js" />
+    <Content Include="Content\Admin\assets\demo\chart-bar-demo.js" />
+    <Content Include="Content\Admin\assets\demo\chart-pie-demo.js" />
+    <Content Include="Content\Admin\assets\demo\datatables-demo.js" />
+    <Content Include="Content\Admin\assets\img\error-404-monochrome.svg" />
+    <Content Include="Content\Admin\css\styles.css" />
+    <Content Include="Content\Admin\js\datatables-simple-demo.js" />
+    <Content Include="Content\Admin\js\scripts.js" />
+    <Content Include="Content\Assests\assets\1a77b82fa5cf6252cb3169e29c613d85.png" />
+    <Content Include="Content\Assests\assets\bookmark-star-favourite-save-svgrepo-com.svg" />
     <Content Include="Content\Assests\assets\default-user.png" />
     <Content Include="Content\Assests\assets\favicon.svg" />
+    <Content Include="Content\Assests\assets\floppy-disk-save-svgrepo-com.svg" />
+    <Content Include="Content\Assests\assets\heart-svgrepo-com.svg" />
     <Content Include="Content\Assests\assets\icons\add.svg" />
     <Content Include="Content\Assests\assets\icons\bookmark.svg" />
     <Content Include="Content\Assests\assets\icons\comment.svg" />
@@ -170,6 +191,8 @@
     <Content Include="Content\Assests\assets\icons\shop.svg" />
     <Content Include="Content\Assests\assets\insta-clone.png" />
     <Content Include="Content\Assests\assets\logo.svg" />
+    <Content Include="Content\Assests\assets\logout-svgrepo-com.svg" />
+    <Content Include="Content\Assests\assets\plus-svgrepo-com.svg" />
     <Content Include="Content\Assests\css\app.css" />
     <Content Include="Content\Assests\css\style.css" />
     <Content Include="Content\Assests\css\style1.css" />
@@ -226,6 +249,15 @@
     <Content Include="Views\User\Profile.cshtml" />
     <Content Include="Views\Authentication\Login.cshtml" />
     <Content Include="Views\Authentication\Register.cshtml" />
+    <Content Include="Views\User\EditProfile.cshtml" />
+    <Content Include="Views\AdminClient\Index.cshtml" />
+    <Content Include="Views\AdminHome\Index.cshtml" />
+    <Content Include="Views\AdminLogin\Index.cshtml" />
+    <Content Include="Views\AdminModules\Footer.cshtml" />
+    <Content Include="Views\AdminModules\Header.cshtml" />
+    <Content Include="Views\AdminModules\Menu.cshtml" />
+    <Content Include="Views\AdminPost\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
