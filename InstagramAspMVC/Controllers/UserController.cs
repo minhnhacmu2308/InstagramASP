@@ -13,6 +13,8 @@ namespace InstagramAspMVC.Controllers
         UserDao userDao = new UserDao();
         FollowDao followDao = new FollowDao();
         PostDao postDao = new PostDao();
+        LikeDao likeDao = new LikeDao();
+        SaveDao saveDao = new SaveDao();
 
         // GET: User
         public ActionResult Index()
@@ -20,12 +22,11 @@ namespace InstagramAspMVC.Controllers
             return View();
         }
 
-        public ActionResult Profile() {
-            var user = (User)Session["User"];
-            var obj = userDao.getInformationByEmail(user.email);
-            ViewBag.numberPost = postDao.getNumberPost(user.id_user);
-            ViewBag.numberFollower = followDao.getNumberFollower(user.id_user);
-            ViewBag.numberFollowing = followDao.getNumberFollowing(user.id_user);
+        public ActionResult Profile(string email,int id) {
+            var obj = userDao.getInformationByEmail(email);
+            ViewBag.numberPost = postDao.getNumberPost(id);
+            ViewBag.numberFollower = followDao.getNumberFollower(id);
+            ViewBag.numberFollowing = followDao.getNumberFollowing(id);
             return View(obj);
         }
 
@@ -90,6 +91,85 @@ namespace InstagramAspMVC.Controllers
 
             return Json(new { status = "OK", data = true, msg = "thanhcong", JsonRequestBehavior.AllowGet });
 
+        }
+
+        [HttpPost]
+        public JsonResult LikePost(int idPost)
+        {
+            var user = (User)Session["User"];
+            Like like = new Like();
+            like.id_post = idPost;
+            like.id_user = user.id_user;
+            var obj = likeDao.checkExist(like);
+            if(obj != null)
+            {
+                likeDao.unLike(like);
+                return Json(new { status = "OK", data = true, msg = "unlike", JsonRequestBehavior.AllowGet });
+            }
+            else
+            {
+                likeDao.like(like);
+                return Json(new { status = "OK", data = true, msg = "like", JsonRequestBehavior.AllowGet });
+            }        
+        }
+
+
+        [HttpPost]
+        public JsonResult FollowUser(int idUserBeFollow)
+        {
+            var user = (User)Session["User"];
+            Follow userFollow = new Follow();
+            userFollow.id_userBeFollow = idUserBeFollow;
+            userFollow.id_userFollow = user.id_user;
+            var obj = followDao.checkExist(userFollow);
+            if (obj != null)
+            {
+                followDao.unFollowUser(userFollow);
+                return Json(new { status = "OK", data = true, msg = "unFollow", JsonRequestBehavior.AllowGet });
+            }
+            else
+            {
+                followDao.followUser(userFollow);
+                return Json(new { status = "OK", data = true, msg = "follow", JsonRequestBehavior.AllowGet });
+            }
+        }
+
+        [HttpPost]
+        public JsonResult SavePost(int idPost)
+        {
+            var user = (User)Session["User"];
+            SavePost userSave = new SavePost();
+            userSave.id_post = idPost;
+            userSave.id_user = user.id_user;
+            var obj = saveDao.checkExist(userSave);
+            if (obj != null)
+            {
+                saveDao.unSave(userSave);
+                return Json(new { status = "OK", data = true, msg = "unSave", JsonRequestBehavior.AllowGet });
+            }
+            else
+            {
+                saveDao.add(userSave);
+                return Json(new { status = "OK", data = true, msg = "save", JsonRequestBehavior.AllowGet });
+            }
+        }
+
+        public ActionResult GetListSave(int id)
+        {
+            var listSave = saveDao.GetSavePosts(id);
+            return View(listSave);
+        }
+
+        public ActionResult ListFollower(int id)
+        {
+            var listFollower = followDao.getListFollower(id);
+            return View(listFollower)
+;       }
+
+        public ActionResult ListFollowing(int id)
+        {
+            var listFollowing = followDao.getListFollowing(id);
+            return View(listFollowing);
         }
     }
 }

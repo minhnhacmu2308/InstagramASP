@@ -4,18 +4,49 @@
     ViewBag.Title = "Profile";
     Layout = "~/Views/Shared/MyLayout.cshtml";
 }
-
+@{ var userInfomatiom = (InstagramAspMVC.Models.User)Session["User"]; }
 <div class="container">
     <div class="profile">
         <div class="profile-image">
-            <img src="~/Content/Assests/images/@Model.image"
-                 alt="" height="150" width="150" />
-        </div>
+            @if (userInfomatiom.image == null)
+            {
+                <img src="~/Content/Assests/assets/default-user.png" height="150" width="150" alt="User Picture" />
+            }
+            else
+            {
+                <img src="~/Content/Assests/images/@Model.image"
+                     alt="" height="150" width="150" />
+            }
 
+        </div>
+      
         <div class="profile-user-settings">
             <h1 class="profile-user-name">@Model.fullname</h1>
+            @{
+                var button2 = "button2" + Model.id_user;
+                InstagramAspMVC.Daos.FollowDao followDao = new InstagramAspMVC.Daos.FollowDao();
+                InstagramAspMVC.Models.Follow follow = new InstagramAspMVC.Models.Follow();
+                follow.id_userFollow = userInfomatiom.id_user;
+                follow.id_userBeFollow = Model.id_user;
+                var check = followDao.checkExist(follow);
+            }
+            @if (Model.id_user != userInfomatiom.id_user)
+            {
+                if (check != null)
+                {
+                    <button id="@button2" onclick="follow(@Model.id_user)" style="margin-bottom:15px;margin-left:10px" type="button" class="btn btn-outline-dark">UnFollow</button>
+                }
+                else
+                {
+                    <button id="@button2" onclick="follow(@Model.id_user)" style="margin-bottom:15px;margin-left:10px" type="button" class="btn btn-primary">Follow</button>
+                }
 
-            <a href="/User/EditProfile" class="btn profile-edit-btn">Edit Profile</a>
+            }
+
+            @if (Model.id_user == userInfomatiom.id_user)
+            {
+                <a href="/User/EditProfile" class="btn profile-edit-btn">Edit Profile</a>
+            }
 
             <button class="btn profile-settings-btn"
                     aria-label="profile settings">
@@ -25,9 +56,9 @@
 
         <div class="profile-stats">
             <ul>
-                <li><span class="profile-stat-count">@ViewBag.numberPost</span> posts</li>
-                <li><span class="profile-stat-count">@ViewBag.numberFollower</span> followers</li>
-                <li><span class="profile-stat-count">@ViewBag.numberFollowing</span> following</li>
+                <li><span class="profile-stat-count">@ViewBag.numberPost posts</span> </li>
+                <li><a style="text-decoration: none; color:black" href="/User/ListFollower/@Model.id_user" class="profile-stat-count">@ViewBag.numberFollower followers</a> </li>
+                <li><a style="text-decoration: none; color: black"  href="/User/ListFollowing/@Model.id_user" class="profile-stat-count">@ViewBag.numberFollowing following</a> </li>
             </ul>
         </div>
 
@@ -41,7 +72,42 @@
     <!-- End of profile section -->
 </div>
 <!-- End of container -->
+<script>
+    function follow(id) {
+        @* var nameId = "#idUserBeFollow" + id;*@
+                 var button2 = "#button2" + id;
+        @* var idUserBeFollow = $(nameId).val();*@
+                 var formData = new FormData();
+        formData.append('idUserBeFollow', id);
+        $.ajax(
+            {
+                type: 'POST',
+                url: '/User/FollowUser/',
+                contentType: false,
+                processData: false,
+                data: formData,
+                success: function (data) {
 
+                    var html = ``;
+                    if (data.msg == "unFollow") {
+                        html = `Follow`
+                        $(button2).addClass('btn-primary');
+                        $(button2).removeClass('btn-outline-dark');
+                        $(button2).html(html)
+                    } else {
+                        html = `UnFollow`
+                        $(button2).addClass('btn-outline-dark');
+                        $(button2).removeClass('btn-primary');
+                        $(button2).html(html)
+                    }
+                },
+                error: function (err) {
+                    alert(err);
+                }
+            }
+        )
+    }
+</script>
 <main>
     <div class="container">
         <div class="gallery">

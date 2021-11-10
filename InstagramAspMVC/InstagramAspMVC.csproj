@@ -138,8 +138,10 @@
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Daos\AdminPostDao.cs" />
     <Compile Include="Daos\AdminUserDao.cs" />
+    <Compile Include="Daos\LikeDao.cs" />
     <Compile Include="Daos\FollowDao.cs" />
     <Compile Include="Daos\PostDao.cs" />
+    <Compile Include="Daos\SaveDao.cs" />
     <Compile Include="Daos\UserDao.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -193,6 +195,7 @@
     <Content Include="Content\Assests\assets\logo.svg" />
     <Content Include="Content\Assests\assets\logout-svgrepo-com.svg" />
     <Content Include="Content\Assests\assets\plus-svgrepo-com.svg" />
+    <Content Include="Content\Assests\assets\save.png" />
     <Content Include="Content\Assests\css\app.css" />
     <Content Include="Content\Assests\css\style.css" />
     <Content Include="Content\Assests\css\style1.css" />
@@ -258,6 +261,9 @@
     <Content Include="Views\AdminModules\Menu.cshtml" />
     <Content Include="Views\AdminPost\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\User\GetListSave.cshtml" />
+    <Content Include="Views\User\ListFollower.cshtml" />
+    <Content Include="Views\User\ListFollowing.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

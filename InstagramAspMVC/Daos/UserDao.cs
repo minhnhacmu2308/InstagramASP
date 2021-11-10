@@ -46,6 +46,11 @@ namespace InstagramAspMVC.Daos
             return myDb.Users.Where(u => u.email == email).FirstOrDefault();
         }
 
+        public User getInformationById(int id)
+        {
+            return myDb.Users.Where(u => u.id_user == id).FirstOrDefault();
+        }
+
         public void update(User user)
         {
             var obj = myDb.Users.Where(u => u.email == user.email).FirstOrDefault();
@@ -77,6 +82,19 @@ namespace InstagramAspMVC.Daos
             var obj = myDb.Users.Where(u => u.email == email).FirstOrDefault();
             obj.password = passwordNew;
             myDb.SaveChanges();
-        }
+       }
+
+       public List<User> getUserUnfollow(int id,int number)
+       {    
+          
+            var listFollow = myDb.Follows.Where(x => x.id_userFollow == id).ToList();
+            var list =  myDb.Users.Where(x => x.id_user != id).Take(number).ToList();
+            foreach(var user in listFollow)
+            {
+
+                list = list.Where(x => x.id_user != user.id_userBeFollow).ToList();
+            }
+            return list;
+       }
     }
 }

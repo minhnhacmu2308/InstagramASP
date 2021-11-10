@@ -1,266 +1,13 @@
-﻿@model List<InstagramAspMVC.Models.Post>
+﻿@model List<InstagramAspMVC.Models.SavePost>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "GetListSave";
     Layout = "~/Views/Shared/MyLayout.cshtml";
 }
 @{ var userInfomatiom = (InstagramAspMVC.Models.User)Session["User"]; }
-<main class="main-container" style="margin-top:20px">
+<main class="main-container"  style="margin-top:20px">
     <section class="content-container">
         <div class="content">
-            <div class="stories">
-                <button class="stories__left-button">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                        <path fill="var(--primary)"
-                              d="M256 504C119 504 8 393 8 256S119 8 256 8s248 111 248 248-111 248-248 248zM142.1 273l135.5 135.5c9.4 9.4 24.6 9.4 33.9 0l17-17c9.4-9.4 9.4-24.6 0-33.9L226.9 256l101.6-101.6c9.4-9.4 9.4-24.6 0-33.9l-17-17c-9.4-9.4-24.6-9.4-33.9 0L142.1 239c-9.4 9.4-9.4 24.6 0 34z"></path>
-                    </svg>
-                </button>
-                <div class="stories__content">
-                    <button class="story story--has-story">
-                        <div class="story__avatar">
-                            <div class="story__border">
-                                <svg width="64"
-                                     height="64"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <circle r="31" cy="32" cx="32" />
-                                    <defs>
-                                        <linearGradient y2="0"
-                                                        x2="1"
-                                                        y1="1"
-                                                        x1="0"
-                                                        id="--story-gradient">
-                                            <stop offset="0" stop-color="#f09433" />
-                                            <stop offset="0.25" stop-color="#e6683c" />
-                                            <stop offset="0.5" stop-color="#dc2743" />
-                                            <stop offset="0.75" stop-color="#cc2366" />
-                                            <stop offset="1" stop-color="#bc1888" />
-                                        </linearGradient>
-                                    </defs>
-                                </svg>
-                            </div>
-                            <div class="story__picture">
-                                <img src="~/Content/Assests/assets/default-user.png" alt="User Picture" />
-                            </div>
-                        </div>
-                        <span class="story__user">usernick1</span>
-                    </button>
-                    <button class="story story--has-story">
-                        <div class="story__avatar">
-                            <div class="story__border">
-                                <svg width="64"
-                                     height="64"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <circle r="31" cy="32" cx="32" />
-                                </svg>
-                            </div>
-                            <div class="story__picture">
-                                <img src="~/Content/Assests/assets/default-user.png" alt="User Picture" />
-                            </div>
-                        </div>
-                        <span class="story__user">usernick2</span>
-                    </button>
-                    <button class="story story--has-story">
-                        <div class="story__avatar">
-                            <div class="story__border">
-                                <svg width="64"
-                                     height="64"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <circle r="31" cy="32" cx="32" />
-                                </svg>
-                            </div>
-                            <div class="story__picture">
-                                <img src="~/Content/Assests/assets/default-user.png" alt="User Picture" />
-                            </div>
-                        </div>
-                        <span class="story__user">usernick3</span>
-                    </button>
-                    <button class="story">
-                        <div class="story__avatar">
-                            <div class="story__border">
-                                <svg width="64"
-                                     height="64"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <circle r="31" cy="32" cx="32" />
-                                </svg>
-                            </div>
-                            <div class="story__picture">
-                                <img src="~/Content/Assests/assets/default-user.png" alt="User Picture" />
-                            </div>
-                        </div>
-                        <span class="story__user">usernick4</span>
-                    </button>
-                    <button class="story">
-                        <div class="story__avatar">
-                            <div class="story__border">
-                                <svg width="64"
-                                     height="64"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <circle r="31" cy="32" cx="32" />
-                                </svg>
-                            </div>
-                            <div class="story__picture">
-                                <img src="~/Content/Assests/assets/default-user.png" alt="User Picture" />
-                            </div>
-                        </div>
-                        <span class="story__user">usernick5</span>
-                    </button>
-                    <button class="story">
-                        <div class="story__avatar">
-                            <div class="story__border">
-                                <svg width="64"
-                                     height="64"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <circle r="31" cy="32" cx="32" />
-                                </svg>
-                            </div>
-                            <div class="story__picture">
-                                <img src="~/Content/Assests/assets/default-user.png" alt="User Picture" />
-                            </div>
-                        </div>
-                        <span class="story__user">usernicfk6</span>
-                    </button>
-                    <button class="story">
-                        <div class="story__avatar">
-                            <div class="story__border">
-                                <svg width="64"
-                                     height="64"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <circle r="31" cy="32" cx="32" />
-                                </svg>
-                            </div>
-                            <div class="story__picture">
-                                <img src="~/Content/Assests/assets/default-user.png" alt="User Picture" />
-                            </div>
-                        </div>
-                        <span class="story__user">usernick7</span>
-                    </button>
-                    <button class="story">
-                        <div class="story__avatar">
-                            <div class="story__border">
-                                <svg width="64"
-                                     height="64"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <circle r="31" cy="32" cx="32" />
-                                </svg>
-                            </div>
-                            <div class="story__picture">
-                                <img src="~/Content/Assests/assets/default-user.png" alt="User Picture" />
-                            </div>
-                        </div>
-                        <span class="story__user">usernick8</span>
-                    </button>
-                    <button class="story">
-                        <div class="story__avatar">
-                            <div class="story__border">
-                                <svg width="64"
-                                     height="64"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <circle r="31" cy="32" cx="32" />
-                                </svg>
-                            </div>
-                            <div class="story__picture">
-                                <img src="~/Content/Assests/assets/default-user.png" alt="User Picture" />
-                            </div>
-                        </div>
-                        <span class="story__user">usernick9</span>
-                    </button>
-                    <button class="story">
-                        <div class="story__avatar">
-                            <div class="story__border">
-                                <svg width="64"
-                                     height="64"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <circle r="31" cy="32" cx="32" />
-                                </svg>
-                            </div>
-                            <div class="story__picture">
-                                <img src="~/Content/Assests/assets/default-user.png" alt="User Picture" />
-                            </div>
-                        </div>
-                        <span class="story__user">usernick10</span>
-                    </button>
-                    <button class="story">
-                        <div class="story__avatar">
-                            <div class="story__border">
-                                <svg width="64"
-                                     height="64"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <circle r="31" cy="32" cx="32" />
-                                </svg>
-                            </div>
-                            <div class="story__picture">
-                                <img src="~/Content/Assests/assets/default-user.png" alt="User Picture" />
-                            </div>
-                        </div>
-                        <span class="story__user">usernick11</span>
-                    </button>
-                    <button class="story">
-                        <div class="story__avatar">
-                            <div class="story__border">
-                                <svg width="64"
-                                     height="64"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <circle r="31" cy="32" cx="32" />
-                                </svg>
-                            </div>
-                            <div class="story__picture">
-                                <img src="~/Content/Assests/assets/default-user.png" alt="User Picture" />
-                            </div>
-                        </div>
-                        <span class="story__user">usernick12</span>
-                    </button>
-                    <button class="story">
-                        <div class="story__avatar">
-                            <div class="story__border">
-                                <svg width="64"
-                                     height="64"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <circle r="31" cy="32" cx="32" />
-                                </svg>
-                            </div>
-                            <div class="story__picture">
-                                <img src="~/Content/Assests/assets/default-user.png" alt="User Picture" />
-                            </div>
-                        </div>
-                        <span class="story__user">usernick13</span>
-                    </button>
-                    <button class="story">
-                        <div class="story__avatar">
-                            <div class="story__border">
-                                <svg width="64"
-                                     height="64"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <circle r="31" cy="32" cx="32" />
-                                </svg>
-                            </div>
-                            <div class="story__picture">
-                                <img src="~/Content/Assests/assets/default-user.png" alt="User Picture" />
-                            </div>
-                        </div>
-                        <span class="story__user">usernick14</span>
-                    </button>
-                    <button class="story">
-                        <div class="story__avatar">
-                            <div class="story__border">
-                                <svg width="64"
-                                     height="64"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <circle r="31" cy="32" cx="32" />
-                                </svg>
-                            </div>
-                            <div class="story__picture">
-                                <img src="~/Content/Assests/assets/default-user.png" alt="User Picture" />
-                            </div>
-                        </div>
-                        <span class="story__user">usernick15</span>
-                    </button>
-                </div>
-                <button class="stories__right-button">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                        <path fill="var(--primary)"
-                              d="M256 8c137 0 248 111 248 248S393 504 256 504 8 393 8 256 119 8 256 8zm113.9 231L234.4 103.5c-9.4-9.4-24.6-9.4-33.9 0l-17 17c-9.4 9.4-9.4 24.6 0 33.9L285.1 256 183.5 357.6c-9.4 9.4-9.4 24.6 0 33.9l17 17c9.4 9.4 24.6 9.4 33.9 0L369.9 273c9.4-9.4 9.4-24.6 0-34z"></path>
-                    </svg>
-                </button>
-            </div>
+           <h2>List post  saved</h2>
 
             <div class="posts">
                 @foreach (var item in Model)
@@ -398,15 +145,15 @@
                                     <button id="@button3" class="post__button post__button--align-right">
                                         <img onclick="save(@item.id_post)" src="~/Content/Assests/assets/save.png" height="22" width="22" />
                                     </button>
-                                }                             
-                                </div>
+                                }
+                            </div>
 
                             <div class="post__infos">
                                 <div class="post__likes">
                                     <a href="#" class="post__likes-avatar">
                                         <img src="~/Content/Assests/assets/default-user.png" alt="User Picture" />
                                     </a>
-                                   
+
                                     <span>
                                         @{
                                             var nameLike = "like" + item.id_post;
@@ -417,7 +164,7 @@
                                         @if (check != null)
                                         {
                                             <a id="@nameLike" class="post__name--underline" href="#">
-                                                you and
+                                                you 
                                             </a>
                                         }
                                         else
@@ -429,9 +176,8 @@
                                         }
                                         @if (number != 0)
                                         {
-                                            <a href="#"> @number orthers</a>
+                                            <a href="#">and @number orthers</a>
                                         }
-
                                     </span>
                                 </div>
 
@@ -440,7 +186,7 @@
                                         <a class="post__name--underline"
                                            href="/User/Profile/@item.User.email/@item.User.id_user"
                                            target="_blank">@item.User.fullname</a>
-                                        @item.content
+                                        @item.Post.content
                                     </span>
                                 </div>
 
@@ -475,59 +221,26 @@
                 <button class="side-menu__user-button">Switch</button>
             </div>
 
-            <div class="side-menu__suggestions-section">
-                <div class="side-menu__suggestions-header">
-                    <h2>Suggestions for You</h2>
-                    <button>See All</button>
-                </div>
-                <div class="side-menu__suggestions-content">
-                    @foreach (var item1 in ViewBag.listUser)
-                    {
-                        <div class="side-menu__suggestion">
-                            <a href="User/Profile/@item1.email/@item1.id_user" class="side-menu__user-avatar">
-                                @if (item1.image == null)
-                                {
-
-                                    <img src="~/Content/Assests/assets/default-user.png" alt="User Picture" />
-                                }
-                                else
-                                {
-                                    <img src="~/Content/Assests/images/@item1.image" alt="User Picture" />
-                                }
-
-                            </a>
-
-                            <div class="side-menu__suggestion-info">
-                                <a href="User/Profile/@item1.email/@item1.id_user">@item1.fullname</a>
-                                <span>Followed by user1, user2 and 9 others</span>
-                            </div>
-                            @{
-                                var button2 = "button2" + @item1.id_user;
-                            }
-                            <button id="@button2" onclick="follow(@item1.id_user)" class="side-menu__suggestion-button">Follow</button>
-                        </div>
-                    }
-                </div>
-            </div>
+          
             <script>
-             function like(id) {
-                 var nameId = "#idPost" + id;
-                 var button1 = "#button1" + id;
-                 var like1 = "#like" + id;
-                 var idPost = $(nameId).val();
-                 var formData = new FormData();
-                 formData.append('idPost', idPost);
-                 $.ajax(
-                     {
-                         type: 'POST',
-                         url: '/User/LikePost/',
-                         contentType: false,
-                         processData: false,
-                         data: formData,
-                         success: function (data) {
-                             var html = ``;
-                             if (data.msg == "unlike") {
-                                 html = `<svg onclick="like(` + id + `)" width="24"
+                function like(id) {
+                    var nameId = "#idPost" + id;
+                    var button1 = "#button1" + id;
+                    var like1 = "#like" + id;
+                    var idPost = $(nameId).val();
+                    var formData = new FormData();
+                    formData.append('idPost', idPost);
+                    $.ajax(
+                        {
+                            type: 'POST',
+                            url: '/User/LikePost/',
+                            contentType: false,
+                            processData: false,
+                            data: formData,
+                            success: function (data) {
+                                var html = ``;
+                                if (data.msg == "unlike") {
+                                    html = `<svg onclick="like(` + id + `)" width="24"
                                                           height="24"
                                                           viewBox="0 0 24 24"
                                                           fill="none"
@@ -537,19 +250,19 @@
                                                                stroke="var(--text-dark)"
                                                                stroke-width="0.6" />
                                                      </svg>`
-                                 $(button1).html(html)
-                                 $(like1).html("")
-                             } else {
-                                 html = ` <img onclick="like(` + id + `)" src="/Content/Assests/assets/heart-svgrepo-com.svg" height="22" width="22" />`
-                                 $(button1).html(html)
-                                 $(like1).html("you and")
-                             }
-                         },
-                         error: function (err) {
-                             alert(err);
-                         }
-                     }
-                 )
+                                    $(button1).html(html)
+                                    $(like1).html("")
+                                } else {
+                                    html = ` <img onclick="like(` + id + `)" src="/Content/Assests/assets/heart-svgrepo-com.svg" height="22" width="22" />`
+                                    $(button1).html(html)
+                                    $(like1).html("you")
+                                }
+                            },
+                            error: function (err) {
+                                alert(err);
+                            }
+                        }
+                    )
                 }
                 function save(id) {
                     var button1 = "#button3" + id;

@@ -16,7 +16,6 @@
             </a>
 
             <button class="header__theme-button" title="Toggle Theme">
-
                 <svg class="header__theme-button-sun"
                      xmlns="http://www.w3.org/2000/svg"
                      width="24"
@@ -104,7 +103,7 @@
         </div>
 
         <div class="header__buttons header__buttons--desktop">
-            <a href="#">
+            <a href="/">
                 <svg width="24"
                      height="24"
                      viewBox="0 0 24 24"
@@ -129,13 +128,13 @@
                           fill="var(--text-dark)" />
                 </svg>
             </a>
-            <a href="#">
+            <a href="/User/GetListSave/@userInfomatiom.id_user">
                 <img src="~/Content/Assests/assets/1a77b82fa5cf6252cb3169e29c613d85.png" height="22" width="21" />
             </a>
             <a href="#">
                <img src="~/Content/Assests/assets/plus-svgrepo-com.svg" height="25" width="25" />
             </a>
-            <a href="/User/Profile" class="profile-button">
+            <a href="/User/Profile/@userInfomatiom.email/@userInfomatiom.id_user" class="profile-button">
                 <div class="profile-button__border"></div>
                 <div class="profile-button__picture">
                     @if (userInfomatiom.image == null)

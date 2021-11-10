@@ -1,0 +1,104 @@
+﻿@model List<InstagramAspMVC.Models.Follow>
+@{
+    ViewBag.Title = "ListFollower";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+<main class="main-container" style="margin-top:20px">
+    <section class="content-container">
+        <div class="content" style="margin-left:50px">
+            <div class="side-menu__suggestions-content">
+                @{
+                    InstagramAspMVC.Daos.UserDao userDao = new InstagramAspMVC.Daos.UserDao();
+                    InstagramAspMVC.Daos.FollowDao followDao = new InstagramAspMVC.Daos.FollowDao();
+                    InstagramAspMVC.Models.Follow follow = new InstagramAspMVC.Models.Follow();
+
+                }
+                @if (Model.Count == 0)
+                {
+                    <h3>List follower blank</h3>
+                }
+                else
+                {
+                    <h3>List follower </h3>
+                    foreach (var item in Model)
+                    {
+                        var obj = userDao.getInformationById(item.id_userFollow);
+                        follow.id_userFollow = item.id_userBeFollow;
+                        follow.id_userBeFollow = item.id_userFollow;
+                        var check = followDao.checkExist(follow);
+            <div class="side-menu__suggestion">
+                <a href="/User/Profile/@obj.email/@obj.id_user" class="side-menu__user-avatar">
+                    @if (obj.image == null)
+                    {
+
+                        <img src="~/Content/Assests/assets/default-user.png" alt="User Picture" />
+                    }
+                    else
+                    {
+                        <img src="~/Content/Assests/images/@obj.image" alt="User Picture" />
+                    }
+
+                </a>
+                @{ var userInfomatiom = (InstagramAspMVC.Models.User)Session["User"]; }
+                <div class="side-menu__suggestion-info">
+                    <a href="/User/Profile/@obj.email/@obj.id_user">@obj.fullname</a>
+                    <span>@obj.username</span>
+                </div>
+                @{
+                    var button2 = "button2" + obj.id_user;
+                }
+                @if (obj.id_user != userInfomatiom.id_user)
+                {
+                    if (check != null)
+                    {
+                        <button id="@button2" onclick="follow(@obj.id_user)" style="margin-bottom:15px;margin-left:10px" type="button" class="btn btn-outline-dark">UnFollow</button>
+                    }
+                    else
+                    {
+                        <button id="@button2" onclick="follow(@obj.id_user)" style="margin-bottom:15px;margin-left:10px" type="button" class="btn btn-primary">Follow</button>
+                    }
+                }
+            </div>
+                    }
+                }
+
+            </div>
+        </div>
+        <script>
+    function follow(id) {
+        @* var nameId = "#idUserBeFollow" + id;*@
+                 var button2 = "#button2" + id;
+        @* var idUserBeFollow = $(nameId).val();*@
+                 var formData = new FormData();
+        formData.append('idUserBeFollow', id);
+        $.ajax(
+            {
+                type: 'POST',
+                url: '/User/FollowUser/',
+                contentType: false,
+                processData: false,
+                data: formData,
+                success: function (data) {
+
+                    var html = ``;
+                    if (data.msg == "unFollow") {
+                        html = `Follow`
+                        $(button2).addClass('btn-primary');
+                        $(button2).removeClass('btn-outline-dark');
+                        $(button2).html(html)
+                    } else {
+                        html = `UnFollow`
+                        $(button2).addClass('btn-outline-dark');
+                        $(button2).removeClass('btn-primary');
+                        $(button2).html(html)
+                    }
+                },
+                error: function (err) {
+                    alert(err);
+                }
+            }
+        )
+    }
+        </script>
+    </section>
+</main>

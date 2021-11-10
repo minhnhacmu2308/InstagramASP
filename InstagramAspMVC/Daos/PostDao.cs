@@ -14,5 +14,11 @@ namespace InstagramAspMVC.Daos
         {
             return myDb.Posts.Where(p => p.id_user == idUser).ToList().Count;
         }
+
+        public List<Post> getNewFeed(int idUser)
+        {
+            return myDb.Posts.ToList();
+            /*return myDb.Posts.Where(x => x.id_user != idUser).ToList();*/
+        }
     }
 }
