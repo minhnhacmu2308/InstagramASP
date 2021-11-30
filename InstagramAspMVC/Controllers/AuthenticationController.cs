@@ -1,5 +1,6 @@
 ﻿using InstagramAspMVC.Daos;
 using InstagramAspMVC.Models;
+using InstagramAspMVC.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace InstagramAspMVC.Controllers
     public class AuthenticationController : Controller
     {
         UserDao userD = new UserDao();
+        ValidateUtils validateUtil = new ValidateUtils();
         // GET: Authentication
         public ActionResult Index()
         {
@@ -37,9 +39,20 @@ namespace InstagramAspMVC.Controllers
             obj.password = userD.md5(user.password);
             obj.phonenumber = user.phonenumber;
             obj.address = user.address;
-
+            bool checkFormatEmail = validateUtil.checkFormatEmail(user.email);
+            bool checkformatNumber = validateUtil.IsValidVietNamPhoneNumber(user.phonenumber);
             User objCheck = userD.checkExist(user.email, user.username, user.phonenumber);
-            if (objCheck != null)
+            if (checkFormatEmail)
+            {
+                ViewBag.message = "Email invalidate";
+                return View();
+            }
+            else if (!checkformatNumber)
+            {
+                ViewBag.message = "Phone number is not in Vietnamese format";
+                return View();
+            }
+            else if (objCheck != null)
             {
                 ViewBag.message = "Email,username or phonenumber is existed";
                 return View();
