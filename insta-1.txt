@@ -1,0 +1,27 @@
+Chức năng:
+Người dùng	  
+	   + Đăng bài post (ok)
+           + Bình luận (ok)
+	   + Thích(done)
+           + Show new feed (done)
+           + đăng nhập (done)
+           + đăng kí(done)
+           + Đổi ảnh đại diện(done)
+	   + cập nhật thông tin user(done)
+           + tìm kiếm (done)
+	   + lưu bài viết(done)
+	   + Xem bài viết (done)
+	   + Xem profile người khác(done)
+	   + Follow(done)
+
+Admin : 
+	- Quản lí người dùng
+		+ Xóa 
+		+ Chặn
+	- Quản lí bài viết
+		+ Xóa
+		+ Chặn
+-----------
+check email,sdt
+check điều kiện bên admin và hiển thị lên trang người dùng
+sửa, xóa bài viết - người dùng

@@ -96,5 +96,10 @@ namespace InstagramAspMVC.Daos
             }
             return list;
        }
+       
+        public List<User> search(string key)
+        {
+            return myDb.Users.Where(c => c.username.Contains(key) || c.fullname.Contains(key) || c.email.Contains(key)).ToList();
+        }
     }
 }

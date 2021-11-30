@@ -30,7 +30,9 @@
                                             <label for="inputPassword">Password</label>
                                         </div>
                                        
-                                        <p style="color:red">@ViewBag.Msg</p>
+                                        <p style="color:red">@{if(ViewBag.Msg != null){
+                                                <span>Thông tin tài khoản mật khẩu không chính xác</span>
+                                        }}</p>
                                         <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                                           
                                             <button class="btn btn-primary" type="submit">Login</button>

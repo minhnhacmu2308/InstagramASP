@@ -24,6 +24,8 @@
                     <thead>
                         <tr>
                             <th>STT</th>
+                            <th>Fullname</th>
+                            <th>Username</th>
                             <th>Email</th>
                             <th>Status</th>
                             <th>Action</th>
@@ -48,6 +50,8 @@
                             id += 1;
                         <tr>
                             <td>@id</td>
+                            <td>@item.fullname</td>
+                            <td>@item.username</td>
                             <td>@item.email</td>
                             @if (item.status == 1)
                             {
@@ -58,7 +62,7 @@
                             else
                             {
                                 <td>
-                                   Đã bị chặn
+                                    Đã bị chặn
                                 </td>
                             }
                             @if (item.status == 1)

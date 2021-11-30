@@ -13,39 +13,41 @@
                 @foreach (var item in Model)
                 {
                     <article class="post">
-                        <div class="post__header">
-                            <div class="post__profile">
-                                <a href="User/Profile/@item.User.email/@item.User.id_user"
-                                   class="post__avatar">
-                                    <img src="~/Content/Assests/images/@item.User.image" alt="User Picture" />
-                                </a>
-                                <a href="User/Profile/@item.User.email/@item.User.id_user"
-                                   class="post__user">@item.User.fullname</a>
-                            </div>
-
-                            <button class="post__more-options">
-                                <svg width="24"
-                                     height="24"
-                                     viewBox="0 0 24 24"
-                                     fill="none"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="6.5"
-                                            cy="11.5"
-                                            r="1.5"
-                                            fill="var(--text-dark)" />
-                                    <circle cx="12" cy="11.5" r="1.5" fill="var(--text-dark)" />
-                                    <circle cx="17.5"
-                                            cy="11.5"
-                                            r="1.5"
-                                            fill="var(--text-dark)" />
-                                </svg>
-                            </button>
+                    <div class="post__header">
+                        <div class="post__profile">
+                            <a href="User/Profile/@item.Post.User.email/@item.Post.User.id_user"
+                               class="post__avatar">
+                                <img src="~/Content/Assests/images/@item.Post.User.image" alt="User Picture" />
+                            </a>
+                            <a href="User/Profile/@item.Post.User.email/@item.Post.User.id_user"
+                               class="post__user">@item.Post.User.fullname</a>
                         </div>
 
+                        <button class="post__more-options">
+                            <svg width="24"
+                                 height="24"
+                                 viewBox="0 0 24 24"
+                                 fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="6.5"
+                                        cy="11.5"
+                                        r="1.5"
+                                        fill="var(--text-dark)" />
+                                <circle cx="12" cy="11.5" r="1.5" fill="var(--text-dark)" />
+                                <circle cx="17.5"
+                                        cy="11.5"
+                                        r="1.5"
+                                        fill="var(--text-dark)" />
+                            </svg>
+                        </button>
+                    </div>
+                    @{
+                        var img = new InstagramAspMVC.Daos.PostDao().getImg(item.id_post);
+                    }
                         <div class="post__content">
                             <div class="post__medias">
                                 <img class="post__media"
-                                     src="~/Content/Assests/assets/insta-clone.png"
+                                     src="~/Content/Assests/images/@img.image"
                                      alt="Post Content" />
                             </div>
                         </div>
@@ -164,7 +166,7 @@
                                         @if (check != null)
                                         {
                                             <a id="@nameLike" class="post__name--underline" href="#">
-                                                you 
+                                                you and
                                             </a>
                                         }
                                         else
@@ -176,22 +178,48 @@
                                         }
                                         @if (number != 0)
                                         {
-                                            <a href="#">and @number orthers</a>
+                                            <a href="#"> @number orthers</a>
                                         }
+
                                     </span>
                                 </div>
 
                                 <div class="post__description">
                                     <span>
                                         <a class="post__name--underline"
-                                           href="/User/Profile/@item.User.email/@item.User.id_user"
-                                           target="_blank">@item.User.fullname</a>
+                                           href="/User/Profile/@item.Post.User.email/@item.Post.User.id_user"
+                                           target="_blank">@item.Post.User.fullname</a>
                                         @item.Post.content
                                     </span>
                                 </div>
-
-                                <span class="post__date-time">30 minutes ago</span>
-                            </div>
+                                @{
+                                    var countC = new InstagramAspMVC.Daos.PostDao().getCmt(item.id_post);
+                                }
+                                <a class="post__date-time" href="/User/DetailPost/@item.id_post" style="text-decoration:none">View all @countC comment</a>
+                                @{ var list = new InstagramAspMVC.Daos.PostDao().getComment(item.id_post);}
+                                @foreach (var cmt in list)
+                                {
+                                    <div class="post__description">
+                                        <span>
+                                            <a class="post__name--underline"
+                                               href="/User/Profile/@cmt.User.email/@cmt.User.id_user"
+                                               target="_blank">@cmt.User.fullname</a>
+                                            @cmt.text
+                                        </span>
+                                    </div>
+                                 }
+                                <span class="post__date-time">@item.Post.createdAt</span>
+                                    <div class="post__likes" style="margin-bottom:20px">
+                                        <a href="#" class="post__likes-avatar">
+                                            <img src="~/Content/Assests/assets/default-user.png" alt="User Picture" />
+                                        </a>
+                                        <form action="/User/CommentSave" method="post" style="width:100%; height:20px;position:relative">
+                                            <input type="hidden" name="post" value="@item.id_post" />
+                                            <input type="text" class="form-control" name="content" id="exampleFormControlInput1" placeholder="Add comment..." style="height: 200%;display:inline" required>
+                                            <button style="position:absolute;right:10px;top:12px" type="submit" class="side-menu__user-button">Post</button>
+                                        </form>
+                                    </div>
+                                </div>
                         </div>
                     </article>
                 }

@@ -264,6 +264,9 @@
     <Content Include="Views\User\GetListSave.cshtml" />
     <Content Include="Views\User\ListFollower.cshtml" />
     <Content Include="Views\User\ListFollowing.cshtml" />
+    <Content Include="Views\User\CreatePost.cshtml" />
+    <Content Include="Views\User\SearchUser.cshtml" />
+    <Content Include="Views\User\DetailPost.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

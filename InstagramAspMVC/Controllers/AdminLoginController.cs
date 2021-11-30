@@ -26,7 +26,7 @@ namespace InstagramAspMVC.Controllers.Admin
             }
             else
             {
-                return RedirectToAction("Index", new { mess = "Thông tin tài khoản mật khẩu không chính xác" });
+                return RedirectToAction("Index", new { mess = "1" });
             }
         }
 
