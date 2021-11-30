@@ -12,12 +12,12 @@ namespace InstagramAspMVC.Daos
 
         public int getNumberPost(int idUser)
         {
-            return myDb.Posts.Where(p => p.id_user == idUser).ToList().Count;
+            return myDb.Posts.Where(p => p.id_user == idUser && p.status == 1).ToList().Count;
         }
 
         public List<Post> getNewFeed(int idUser)
         {
-            return myDb.Posts.OrderByDescending(p => p.id_post).ToList();
+            return myDb.Posts.Where(b => b.status == 1).OrderByDescending(p => p.id_post).ToList();
             /*return myDb.Posts.Where(x => x.id_user != idUser).ToList();*/
         }
         public void addPost(Post post)
@@ -36,7 +36,7 @@ namespace InstagramAspMVC.Daos
         }
         public List<Post> getPostUser(int id)
         {
-            return myDb.Posts.Where(p => p.id_user == id).OrderByDescending(c => c.id_post).ToList();
+            return myDb.Posts.Where(p => p.id_user == id && p.status == 1).OrderByDescending(c => c.id_post).ToList();
         }
         public int getLike(int id)
         {

@@ -32,7 +32,7 @@ namespace InstagramAspMVC.Daos
 
         public User checkLogin(string email,string password)
         {
-            return myDb.Users.Where(u => u.email == email && u.password == password).FirstOrDefault();
+            return myDb.Users.Where(u => u.email == email && u.password == password && u.status == 1).FirstOrDefault();
         }
 
         public void add(User user)

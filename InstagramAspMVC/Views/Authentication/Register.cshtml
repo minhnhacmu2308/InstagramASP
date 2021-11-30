@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 <!DOCTYPE html>
@@ -54,16 +53,20 @@
                                         Password
                                     </span>
                                     <input type="password" name="password" required>
+
                                 </div>
+                                <p style="font-size:10px;margin:3px">(password at least 6 characters)<span style="color:red">*</span></p>
                             </div>
+
                             <div class="form-group">
                                 <div class="animate-input">
                                     <span>
                                         Username
                                     </span>
                                     <input type="text" name="username" required>
-                                 
+
                                 </div>
+                                <p style="font-size:10px;margin:3px">(username at least 6 characters)<span style="color:red">*</span></p>
                             </div>
                             <div class="form-group">
                                 <div class="animate-input">
@@ -71,8 +74,9 @@
                                         Full name
                                     </span>
                                     <input type="text" name="fullname" required>
-                                  
+
                                 </div>
+                                <p style="font-size:10px;margin:3px">(fullname at least 6 characters)<span style="color:red">*</span></p>
                             </div>
                             <div class="form-group">
                                 <div class="animate-input">
@@ -80,7 +84,7 @@
                                         Address
                                     </span>
                                     <input type="text" name="address" required>
-                                   
+
                                 </div>
                             </div>
                             <div class="form-group">
@@ -89,11 +93,11 @@
                                         Phone number
                                     </span>
                                     <input type="text" name="phonenumber" required>
-                                   
+
                                 </div>
                             </div>
                             <div class="form-group">
-                               <p style="color:red;font-size:13px">@ViewBag.message</p>
+                                <p style="color:red;font-size:13px">@ViewBag.message</p>
                             </div>
                             <div class="btn-group">
                                 <button type="submit" class="btn-login" id="signin-btn">
@@ -104,8 +108,8 @@
                         </form>
                     </div>
                     <div class="box goto">
-                        <p>                         
-                            <a href="/Authentication/Login" >Sign in</a>
+                        <p>
+                            <a href="/Authentication/Login">Sign in</a>
                         </p>
                     </div>
 
@@ -149,5 +153,3 @@
 </body>
 
 </html>
-
-

@@ -22,6 +22,6 @@ Admin :
 		+ Xóa
 		+ Chặn
 -----------
-check email,sdt
-check điều kiện bên admin và hiển thị lên trang người dùng
+check email,sdt : done
+check điều kiện bên admin và hiển thị lên trang người dùng : done
 sửa, xóa bài viết - người dùng

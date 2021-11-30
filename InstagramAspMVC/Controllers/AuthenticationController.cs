@@ -39,6 +39,7 @@ namespace InstagramAspMVC.Controllers
             obj.password = userD.md5(user.password);
             obj.phonenumber = user.phonenumber;
             obj.address = user.address;
+            obj.status = 1;
             bool checkFormatEmail = validateUtil.checkFormatEmail(user.email);
             bool checkformatNumber = validateUtil.IsValidVietNamPhoneNumber(user.phonenumber);
             User objCheck = userD.checkExist(user.email, user.username, user.phonenumber);
@@ -61,7 +62,7 @@ namespace InstagramAspMVC.Controllers
             {
                 userD.add(obj);
                 return RedirectToAction("Login");
-            }        
+            }
         }
         [HttpPost]
         public ActionResult Login(User user)
@@ -80,7 +81,7 @@ namespace InstagramAspMVC.Controllers
                 Session.Add("User", information);
                 return RedirectToAction("Index", "Home");
             }
-           
+
         }
         public ActionResult Logout()
         {
