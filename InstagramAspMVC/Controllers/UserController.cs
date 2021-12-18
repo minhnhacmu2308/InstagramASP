@@ -1,4 +1,5 @@
-﻿using InstagramAspMVC.Daos;
+﻿using InstagramAspMVC.Dao;
+using InstagramAspMVC.Daos;
 using InstagramAspMVC.Models;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace InstagramAspMVC.Controllers
         PostDao postDao = new PostDao();
         LikeDao likeDao = new LikeDao();
         SaveDao saveDao = new SaveDao();
+        AdminPostDao adminP = new AdminPostDao();
 
         // GET: User
         public ActionResult Index()
@@ -214,6 +216,49 @@ namespace InstagramAspMVC.Controllers
         {
             ViewBag.Post = postDao.getInforPost(id);
             return View();
+        }
+        public ActionResult Update(int id)
+        {
+            ViewBag.Post = postDao.getInforPost(id);
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Update(FormCollection form, HttpPostedFileBase file)
+        {
+            var user = (User)Session["User"];
+            //Lấy thông tin từ input type=file có tên Avatar
+            
+            var content = form["content"];
+            var idi = form["idpost"];
+            var id = Int32.Parse(idi);
+            Post post = new Post();
+            post.id_post = id;
+            post.content = content;
+            postDao.editPost(post);
+            if (file == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                string postedFileName = System.IO.Path.GetFileName(file.FileName);
+                //Lưu hình đại diện về Server
+                var path = Server.MapPath("/Content/Assests/images/" + postedFileName);
+                file.SaveAs(path);
+                Images images = new Images();
+                images.id_Post = id;
+                images.image = postedFileName;
+                postDao.editImg(images);
+                return RedirectToAction("Index", "Home");
+            }
+        }
+        [HttpPost]
+        public ActionResult Delete(FormCollection form)
+        {
+            var idi = form["idx"];
+            var id = Int32.Parse(idi);
+            adminP.changeStatus(id);
+            return RedirectToAction("Index", "Home");
         }
         [HttpPost]
         public ActionResult CommentDetail(FormCollection form)

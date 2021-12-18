@@ -25,6 +25,18 @@ namespace InstagramAspMVC.Daos
             myDb.Posts.Add(post);
             myDb.SaveChanges();
         }
+        public void editPost(Post post)
+        {
+            var obj = myDb.Posts.FirstOrDefault(x => x.id_post == post.id_post);
+            obj.content = post.content;
+            myDb.SaveChanges();
+        }
+        public void editImg(Images images)
+        {
+            var obj = myDb.Images.FirstOrDefault(x => x.id_Post == images.id_Post);
+            obj.image = images.image;
+            myDb.SaveChanges();
+        }
         public void addImg(Images images)
         {
             myDb.Images.Add(images);
